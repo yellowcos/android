@@ -36,11 +36,12 @@ import com.owncloud.android.lib.common.authentication.oauth.OAuth2ClientConfigur
 import com.owncloud.android.lib.common.authentication.oauth.OAuth2ProvidersRegistry;
 import com.owncloud.android.lib.common.authentication.oauth.OwnCloudOAuth2Provider;
 import com.owncloud.android.lib.common.utils.Log_OC;
+import com.owncloud.android.ui.activity.WhatsNewActivity;
 
 
 /**
  * Main Application of the project
- * 
+ *
  * Contains methods to build the "static" strings. These strings were before constants in different
  * classes
  */
@@ -62,11 +63,11 @@ public class MainApp extends Application {
     // private static boolean mOnlyOnDevice = false;
 
     public static String BUILD_TYPE_BETA = "beta";
-    
+
     public void onCreate(){
         super.onCreate();
         MainApp.mContext = getApplicationContext();
-        
+
         boolean isSamlAuth = AUTH_ON.equals(getString(R.string.auth_method_saml_web_sso));
 
         OwnCloudClientManagerFactory.setUserAgent(getUserAgent());
@@ -100,7 +101,7 @@ public class MainApp extends Application {
 
         // initialise thumbnails cache on background thread
         new ThumbnailsCacheManager.InitDiskCacheTask().execute();
-        
+
         if (BuildConfig.DEBUG || BuildConfig.BUILD_TYPE.equals(BUILD_TYPE_BETA)) {
 
             String dataFolder = getDataFolder();
@@ -118,6 +119,7 @@ public class MainApp extends Application {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
                 Log_OC.d(activity.getClass().getSimpleName(),  "onCreate(Bundle) starting" );
+                WhatsNewActivity.runIfNeeded(activity);
                 PassCodeManager.getPassCodeManager().onActivityCreated(activity);
             }
 
@@ -171,7 +173,7 @@ public class MainApp extends Application {
     public static String getAuthority() {
         return getAppContext().getResources().getString(R.string.authority);
     }
-    
+
     public static String getAuthTokenType() {
         return getAppContext().getResources().getString(R.string.authority);
     }
@@ -179,15 +181,15 @@ public class MainApp extends Application {
     public static String getDBFile() {
         return getAppContext().getResources().getString(R.string.db_file);
     }
-    
+
     public static String getDBName() {
         return getAppContext().getResources().getString(R.string.db_name);
     }
-     
+
     public static String getDataFolder() {
         return getAppContext().getResources().getString(R.string.data_folder);
     }
-    
+
     public static String getLogName() {
         return getAppContext().getResources().getString(R.string.log_name);
     }
