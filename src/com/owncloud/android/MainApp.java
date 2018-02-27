@@ -114,19 +114,19 @@ public class MainApp extends Application {
         }
 
         // register global protection with pass code
-        registerActivityLifecycleCallbacks( new ActivityLifecycleCallbacks() {
+        registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
 
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
                 Log_OC.d(activity.getClass().getSimpleName(),  "onCreate(Bundle) starting" );
-//                PassCodeManager.getPassCodeManager().onActivityCreated(activity);
+                PassCodeManager.getPassCodeManager().onActivityCreated(activity);
                 FingerprintManager.getFingerprintManager().onActivityCreated(activity);
             }
 
             @Override
             public void onActivityStarted(Activity activity) {
                 Log_OC.d(activity.getClass().getSimpleName(),  "onStart() starting" );
-//                PassCodeManager.getPassCodeManager().onActivityStarted(activity);
+                PassCodeManager.getPassCodeManager().onActivityStarted(activity);
                 FingerprintManager.getFingerprintManager().onActivityStarted(activity);
             }
 
