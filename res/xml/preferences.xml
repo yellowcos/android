@@ -58,6 +58,9 @@
         <android.preference.CheckBoxPreference
             android:key="set_pincode"
             android:title="@string/prefs_passcode" />
+        <android.preference.CheckBoxPreference
+            android:key="set_fingerprint"
+            android:title="@string/prefs_fingerprint" />
     </PreferenceCategory>
 
     <PreferenceCategory
