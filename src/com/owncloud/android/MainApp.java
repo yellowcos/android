@@ -25,6 +25,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 
@@ -120,14 +121,18 @@ public class MainApp extends Application {
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
                 Log_OC.d(activity.getClass().getSimpleName(),  "onCreate(Bundle) starting" );
                 PassCodeManager.getPassCodeManager().onActivityCreated(activity);
-                FingerprintManager.getFingerprintManager().onActivityCreated(activity);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    FingerprintManager.getFingerprintManager().onActivityCreated(activity);
+                }
             }
 
             @Override
             public void onActivityStarted(Activity activity) {
                 Log_OC.d(activity.getClass().getSimpleName(),  "onStart() starting" );
                 PassCodeManager.getPassCodeManager().onActivityStarted(activity);
-                FingerprintManager.getFingerprintManager().onActivityStarted(activity);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    FingerprintManager.getFingerprintManager().onActivityStarted(activity);
+                }
             }
 
             @Override
@@ -144,6 +149,9 @@ public class MainApp extends Application {
             public void onActivityStopped(Activity activity) {
                 Log_OC.d(activity.getClass().getSimpleName(), "onStop() ending" );
                 PassCodeManager.getPassCodeManager().onActivityStopped(activity);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    FingerprintManager.getFingerprintManager().onActivityStopped(activity);
+                }
             }
 
             @Override
